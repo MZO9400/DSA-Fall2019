@@ -29,7 +29,7 @@ namespace BT {
 			this.textBox1.Text = "";
 			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + Tree.getCount();
+									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();
 		}
 		
 		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
@@ -56,7 +56,7 @@ namespace BT {
 			this.textBox2.Text = "";
 			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + Tree.getCount();
+									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();
 		}
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}

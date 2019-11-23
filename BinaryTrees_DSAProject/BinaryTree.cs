@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BT {
 	class BinaryTree {
 		private Node mRoot;
-		private static UInt16 count;
-		public ref UInt16 getCount() {
-			return ref count;
+		public Int32 getCount() {
+			return System.Text.RegularExpressions.Regex.Matches(this.InOrderTraversal(), @"((\w+(\s?)))").Count;
 		}
 		public BinaryTree(Node root = null) {
 			this.mRoot = root;
-			count = 0;
 		}
 		private static void m_insertNode(ref Int32 data, ref Node parent) {
 			if (parent == null) {
 				parent = new Node(ref data);
-				count++;
 			}
 			else if (parent.m_getData() > data) {
 				m_insertNode(ref data, ref parent.mLeft);
@@ -31,15 +24,25 @@ namespace BT {
 			}
 		}
 		private Node m_findNode(ref Int32 data, ref Node parent) {
-			if (parent.m_getData() > data) {
-				return this.m_findNode(ref data, ref parent.mLeft);
+			if (parent != null) {
+				if (parent.m_getData() > data) {
+					return this.m_findNode(ref data, ref parent.mLeft);
+				}
+				else {
+					return parent.m_getData() < data ? this.m_findNode(ref data, ref parent.mRight) : parent;
+				}
 			}
-			else {
-				return parent.m_getData() < data ? this.m_findNode(ref data, ref parent.mRight) : parent;
-			}
+			return null;
 		}
-		private Node m_getMinimum(ref Node parent) {
-			return parent == null ? parent : this.m_getMinimum(ref parent.mLeft);
+		private Node m_getMinimum(ref Node self) {
+			if (self.mRight == null) {
+				return self;
+			}
+			Node child = self.mRight;
+			while (child.mLeft != null) {
+				child = child.mLeft;
+			}
+			return child;
 		}
 		private Node m_getParent(ref Node self, ref Node find) {
 			if (find != this.mRoot || self == null) {
@@ -58,103 +61,37 @@ namespace BT {
 				}
 			}
 		}
-		public void m_deleteNode(ref Int32 data) {
-			Node current = this.mRoot;
-			Node parent = this.mRoot;
-			Boolean isLeftChild = false;
-
-			if (this.mRoot == null) {
-				return;
+		public Node m_deleteNode(ref Int32 data, ref Node self) {
+			if (this.findNode(ref data) == this.mRoot && 
+				this.mRoot.mLeft == null && this.mRoot.mRight == null) {
+				this.mRoot = null;
+				return null;
 			}
-
-			while (current != null && current.m_getData() != data) {
-				parent = current;
-
-				if (data < current.m_getData()) {
-					current = current.mLeft;
-					isLeftChild = true;
-				}
-				else {
-					current = current.mRight;
-					isLeftChild = false;
-				}
+			if (self == null) {
+				return null;
 			}
-
-			if (current == null) {
-				return;
+			if (data < self.m_getData()) {
+				self.mLeft = this.m_deleteNode(ref data, ref self.mLeft);
 			}
-
-			if (current.mRight == null && current.mLeft == null) {
-				if (current == this.mRoot) {
-					this.mRoot = null;
-					count--;
-				}
-				else {
-					if (isLeftChild) {
-						parent.mLeft = null;
-						count--;
-					}
-					else {
-						parent.mRight = null;
-						count--;
-					}
-				}
+			else if (data > self.m_getData()) {
+				self.mRight = this.m_deleteNode(ref data, ref self.mRight);
 			}
-			else if (current.mRight == null)
-			{
-				if (current == this.mRoot) {
-					this.mRoot = current.mLeft;
-					count--;
+			else {
+				if (self.mLeft == null) {
+					return self.mRight;
 				}
-				else {
-					if (isLeftChild)
-					{
-						parent.mLeft = current.mLeft;
-						count--;
-					}
-					else {
-						parent.mRight = current.mLeft;
-						count--;
-					}
+				else if (self.mRight == null) {
+					return self.mLeft;
 				}
+				Node selfRight = self.mRight;
+				Int32 min = this.m_getMinimum(ref selfRight).m_getData();
+				self.m_setData(min);
+				self.mRight = this.m_deleteNode(ref min, ref selfRight);
 			}
-			else if (current.mLeft == null) 
-		   {
-				if (current == this.mRoot) {
-					this.mRoot = current.mRight;
-					count--;
-				}
-				else {
-					if (isLeftChild) {
-						parent.mLeft = current.mRight;
-						count--;
-					}
-					else {   
-						parent.mRight = current.mRight;
-						count--;
-					}
-				}
-			}
-			else
-			{	
-				Node successor = this.m_getMinimum(ref current.mRight);
-				
-				if (current == this.mRoot) {
-					this.mRoot = successor;
-					count--;
-				}
-				else if (isLeftChild) {
-					parent.mLeft = successor;
-					count--;
-				}
-				else {
-					parent.mRight = successor;
-					count--;
-				}
-
-			}
+			return self;
 
 		}
+		
 
 		private String m_inOrderTraversal(ref Node parent, ref String key) {
 			if (parent == null) {
@@ -223,7 +160,7 @@ namespace BT {
 			return this.m_findNode(ref data, ref this.mRoot);
 		}
 		public void deleteNode(ref Int32 data) {
-			this.m_deleteNode(ref data);
+			_ = this.m_deleteNode(ref data, ref mRoot);
 		}
 	}
 }
