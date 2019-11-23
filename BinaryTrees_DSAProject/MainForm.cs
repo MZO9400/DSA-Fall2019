@@ -27,9 +27,9 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox1.Text);
 			this.Tree.insertNode(ref value);
 			this.textBox1.Text = "";
-			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" + 
+			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal();
+									 this.Tree.PostOrderTraversal() + "\n\n" + Tree.getCount();
 		}
 		
 		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
@@ -38,7 +38,7 @@ namespace BT {
 				e.Handled = true;
 			}
 			if (insert == 13) {
-				InsertionButton_Click(this, new EventArgs());
+				this.InsertionButton_Click(this, new EventArgs());
 				e.Handled = true;
 			}
 		}
@@ -56,8 +56,7 @@ namespace BT {
 			this.textBox2.Text = "";
 			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal();
-
+									 this.Tree.PostOrderTraversal() + "\n\n" + Tree.getCount();
 		}
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}
@@ -68,20 +67,20 @@ namespace BT {
 				e.Handled = true;
 			}
 			if (insert == 13) {
-				DeletionButton_Click(this, new EventArgs());
+				this.DeletionButton_Click(this, new EventArgs());
 				e.Handled = true;
 			}
 
 		}
 
 		private void preOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(Tree.PreOrderTraversal(), "PREORDER");
+			_ = MessageBox.Show(this.Tree.PreOrderTraversal(), "PREORDER");
 		}
 		private void inOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(Tree.InOrderTraversal(), "INORDER");
+			_ = MessageBox.Show(this.Tree.InOrderTraversal(), "INORDER");
 		}
 		private void postOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(Tree.PostOrderTraversal(), "POSTORDER");
+			_ = MessageBox.Show(this.Tree.PostOrderTraversal(), "POSTORDER");
 		}
 	}
 }

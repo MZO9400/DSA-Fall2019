@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 namespace BT {
 	class BinaryTree {
 		private Node mRoot;
+		private static UInt16 count;
+		public ref UInt16 getCount() {
+			return ref count;
+		}
 		public BinaryTree(Node root = null) {
 			this.mRoot = root;
+			count = 0;
 		}
 		private static void m_insertNode(ref Int32 data, ref Node parent) {
 			if (parent == null) {
 				parent = new Node(ref data);
+				count++;
 			}
 			else if (parent.m_getData() > data) {
 				m_insertNode(ref data, ref parent.mLeft);
@@ -44,20 +50,20 @@ namespace BT {
 					return self;
 				else {
 					if (self.m_getData() < find.m_getData()) {
-						return m_getParent(ref self.mRight, ref find);
+						return this.m_getParent(ref self.mRight, ref find);
 					}
 					else {
-						return m_getParent(ref self.mLeft, ref find);
+						return this.m_getParent(ref self.mLeft, ref find);
 					}
 				}
 			}
 		}
 		public void m_deleteNode(ref Int32 data) {
-			Node current = mRoot;
-			Node parent = mRoot;
-			bool isLeftChild = false;
+			Node current = this.mRoot;
+			Node parent = this.mRoot;
+			Boolean isLeftChild = false;
 
-			if (mRoot == null) {
+			if (this.mRoot == null) {
 				return;
 			}
 
@@ -79,59 +85,71 @@ namespace BT {
 			}
 
 			if (current.mRight == null && current.mLeft == null) {
-				if (current == mRoot) {
-					mRoot = null;
+				if (current == this.mRoot) {
+					this.mRoot = null;
+					count--;
 				}
 				else {
 					if (isLeftChild) {
 						parent.mLeft = null;
+						count--;
 					}
 					else {
 						parent.mRight = null;
+						count--;
 					}
 				}
 			}
 			else if (current.mRight == null)
 			{
-				if (current == mRoot) {
-					mRoot = current.mLeft;
+				if (current == this.mRoot) {
+					this.mRoot = current.mLeft;
+					count--;
 				}
 				else {
 					if (isLeftChild)
 					{
 						parent.mLeft = current.mLeft;
+						count--;
 					}
 					else {
 						parent.mRight = current.mLeft;
+						count--;
 					}
 				}
 			}
 			else if (current.mLeft == null) 
 		   {
-				if (current == mRoot) {
-					mRoot = current.mRight;
+				if (current == this.mRoot) {
+					this.mRoot = current.mRight;
+					count--;
 				}
 				else {
 					if (isLeftChild) {
 						parent.mLeft = current.mRight;
+						count--;
 					}
 					else {   
 						parent.mRight = current.mRight;
+						count--;
 					}
 				}
 			}
 			else
 			{	
-				Node successor = m_getMinimum(ref current.mRight);
+				Node successor = this.m_getMinimum(ref current.mRight);
 				
-				if (current == mRoot) {
-					mRoot = successor;
+				if (current == this.mRoot) {
+					this.mRoot = successor;
+					count--;
 				}
 				else if (isLeftChild) {
 					parent.mLeft = successor;
+					count--;
 				}
 				else {
 					parent.mRight = successor;
+					count--;
 				}
 
 			}
@@ -181,7 +199,7 @@ namespace BT {
 		}
 
 		public Node getParent(ref Node data) {
-			return m_getParent(ref mRoot, ref data);
+			return this.m_getParent(ref this.mRoot, ref data);
 		}
 		public String InOrderTraversal() {
 			String value = "";
