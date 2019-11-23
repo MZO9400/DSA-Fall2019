@@ -11,6 +11,7 @@ using System.Windows.Forms;
 namespace BT {
 	public partial class MainForm : Form {
 		public MainForm() {
+			this.Tree = new BinaryTree();
 			this.InitializeComponent();
 		}
 

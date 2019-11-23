@@ -62,8 +62,11 @@ namespace BT {
 			}
 		}
 		public Node m_deleteNode(ref Int32 data, ref Node self) {
-			if (this.findNode(ref data) == this.mRoot && 
-				this.mRoot.mLeft == null && this.mRoot.mRight == null) {
+			if (this.findNode(ref data) == this.mRoot) { 
+				this.mRoot = null;
+				return null;
+			}
+			if (this.mRoot.mLeft == null && this.mRoot.mRight == null) {
 				this.mRoot = null;
 				return null;
 			}
@@ -160,7 +163,7 @@ namespace BT {
 			return this.m_findNode(ref data, ref this.mRoot);
 		}
 		public void deleteNode(ref Int32 data) {
-			_ = this.m_deleteNode(ref data, ref mRoot);
+			_ = this.m_deleteNode(ref data, ref this.mRoot);
 		}
 	}
 }
