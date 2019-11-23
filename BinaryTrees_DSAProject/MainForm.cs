@@ -62,7 +62,7 @@ namespace BT {
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}
 
-		private void DeletionButton_KeyPress(Object sender, KeyPressEventArgs e) {
+		private void DeletionValue_KeyPress(Object sender, KeyPressEventArgs e) {
 			Char insert = e.KeyChar;
 			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46) {
 				e.Handled = true;

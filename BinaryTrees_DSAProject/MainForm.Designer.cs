@@ -69,7 +69,6 @@
 			this.button2.Text = "Delete";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.DeletionButton_Click);
-			this.button2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DeletionButton_KeyPress);
 			// 
 			// textBox2
 			// 
@@ -79,6 +78,7 @@
 			this.textBox2.TabIndex = 4;
 			this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.textBox2.TextChanged += new System.EventHandler(this.DeletionValue_TextChanged);
+			this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DeletionValue_KeyPress);
 			// 
 			// MainForm
 			// 
