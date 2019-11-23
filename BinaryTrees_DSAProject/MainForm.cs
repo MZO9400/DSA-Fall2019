@@ -73,5 +73,15 @@ namespace BT {
 			}
 
 		}
+
+		private void preOrderButton_Click(Object sender, EventArgs e) {
+			_ = MessageBox.Show(Tree.PreOrderTraversal(), "PREORDER");
+		}
+		private void inOrderButton_Click(Object sender, EventArgs e) {
+			_ = MessageBox.Show(Tree.InOrderTraversal(), "INORDER");
+		}
+		private void postOrderButton_Click(Object sender, EventArgs e) {
+			_ = MessageBox.Show(Tree.PostOrderTraversal(), "POSTORDER");
+		}
 	}
 }
