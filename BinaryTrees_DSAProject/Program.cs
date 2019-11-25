@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+/*
+ * Main() function, automatic generation in Visual C#	 
+*/
 namespace BT {
 	static class Program {
 		/// <summary>

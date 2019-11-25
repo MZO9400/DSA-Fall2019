@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Simple Node class taking has 32-bit integer and pointer to children
+ */
 namespace BT {
 	class Node {
 		public Node mLeft;
