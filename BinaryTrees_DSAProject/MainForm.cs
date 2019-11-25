@@ -106,7 +106,7 @@ namespace BT {
 		 */
 		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
 			Char insert = e.KeyChar;
-			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46) {
+			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46 && insert != '-') {
 				e.Handled = true;
 			}
 			/*
@@ -137,7 +137,7 @@ namespace BT {
 		 */
 		private void DeletionValue_KeyPress(Object sender, KeyPressEventArgs e) {
 			Char insert = e.KeyChar;
-			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46) {
+			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46 && insert != '-') {
 				e.Handled = true;
 			}
 			if (insert == 13) {
