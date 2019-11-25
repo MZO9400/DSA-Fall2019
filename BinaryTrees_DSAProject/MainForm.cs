@@ -99,7 +99,7 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox1.Text);
 			this.Tree.insertNode(ref value);
 			this.textBox1.Text = "";
-			drawBlobs();
+			this.drawBlobs();
 		}
 		/*
 		 * Allow only numbers, backspace, enter, and some other special characters
@@ -127,7 +127,7 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox2.Text);
 			this.Tree.deleteNode(ref value);
 			this.textBox2.Text = "";
-			drawBlobs();
+			this.drawBlobs();
 		}
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}

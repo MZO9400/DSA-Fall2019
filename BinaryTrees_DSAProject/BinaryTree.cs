@@ -97,10 +97,6 @@ namespace BT {
 		 * 3) if there are two children, get the min from right subtree and replace it with self
 		 */
 		public Node m_deleteNode(ref Int32 data, ref Node self) {
-			if (this.mRoot.mLeft == null && this.mRoot.mRight == null) {
-				this.mRoot = null;
-				return null;
-			}
 			if (self == null) {
 				return null;
 			}
