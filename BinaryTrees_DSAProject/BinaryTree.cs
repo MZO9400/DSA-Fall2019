@@ -96,32 +96,41 @@ namespace BT {
 		 * 2) if there is one child, shift it up and remove self
 		 * 3) if there are two children, get the min from right subtree and replace it with self
 		 */
-		public Node m_deleteNode(ref Int32 data, ref Node self) {
+		private Node m_deleteNode(ref Int32 data, ref Node self) {
 			if (self == null) {
 				return self;
 			}
-			if (data < self.m_getData()) {
+			else if (data < self.m_getData()) {
 				self.mLeft = this.m_deleteNode(ref data, ref self.mLeft);
 			}
 			else if (data > self.m_getData()) {
 				self.mRight = this.m_deleteNode(ref data, ref self.mRight);
 			}
+
 			else {
-				if (self.mLeft == null) {
-					return self.mRight;
+				if (self.mLeft == null && self.mRight == null) {
+					self = null;
+					return self;
+				}
+
+				else if (self.mLeft == null) {
+					self = self.mRight;
+					return self;
 				}
 				else if (self.mRight == null) {
-					return self.mLeft;
+					self = self.mLeft;
+					return self;
 				}
-				Node selfRight = self.mRight;
-				Int32 min = this.m_getMinimum(ref selfRight).m_getData();
-				self.m_setData(min);
-				self.mRight = this.m_deleteNode(ref min, ref selfRight);
+
+				else {
+					int tData = m_getMinimum(ref self.mRight).m_getData();
+					self.m_setData(tData);
+					self.mRight = m_deleteNode(ref tData, ref self.mRight);
+				}
 			}
 			return self;
-
 		}
-		
+
 		/*
 		 * As studied in class, simple traversal techniques
 		 */
