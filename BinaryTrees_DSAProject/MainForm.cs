@@ -18,9 +18,52 @@ namespace BT {
 		private void MainForm_Load(Object sender, EventArgs e) {
 
 		}
-		private void drawBoxes() {
-			List<Int32> traversal = this.Tree.getValues(this.Tree.InOrderTraversal());
-			
+		private void makeBlob(Node self, Int32 width, Int32 height) {
+			if (self == null) { 
+				return;
+			}
+			this.Controls.Add(
+				new System.Windows.Forms.Label {
+					AutoSize = true,
+					Anchor = (AnchorStyles.Top | AnchorStyles.Bottom),
+					ForeColor = Color.White,
+					Location = new System.Drawing.Point(width / 2, height),
+					Name = "Blob" + (width / 2).ToString(),
+					Size = new System.Drawing.Size(35, 13),
+					TabIndex = 8,
+					Text = self.m_getData().ToString(),
+					BorderStyle = BorderStyle.FixedSingle,
+					Padding = new Padding(8)
+				}
+			);
+		}
+		private void removeOldControls() {
+			for (Int32 i = 0; i < this.Controls.Count; i++) {
+				if (this.Controls[i] is Label) {
+					if (this.Controls[i].Name.Contains("Blob")) {
+						this.Controls[i].Dispose();
+					}
+				}
+			}
+		}
+		private void drawBlobs() {
+			this.removeOldControls();
+			this.m_drawBoxesHelper(this.Tree.getRoot(), this.Width, 100);
+		}
+		private void m_drawBoxesHelper(Node current, Int32 width, Int32 height) {
+			if (current != null) {
+				this.makeBlob(current, width, height);
+			}
+			else {
+				return;
+			}
+			if (current.mLeft != null) {
+				this.m_drawBoxesHelper(current.mLeft, width - 100, height + 100);
+			}
+
+			if (current.mRight != null) {
+				this.m_drawBoxesHelper(current.mRight, width + 100, height + 100);
+			}
 		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
 
@@ -86,5 +129,9 @@ namespace BT {
 		private void postOrderButton_Click(Object sender, EventArgs e) {
 			_ = MessageBox.Show(this.Tree.PostOrderTraversal(), "POSTORDER");
 		}
+		private void DrawBlobs_Click(Object sender, EventArgs e) {
+			this.drawBlobs();
+		}
+
 	}
 }

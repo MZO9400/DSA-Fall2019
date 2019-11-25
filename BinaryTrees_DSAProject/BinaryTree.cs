@@ -8,7 +8,7 @@ namespace BT {
 			return System.Text.RegularExpressions.Regex.Matches(this.InOrderTraversal(), @"((\w+(\s?)))").Count;
 		}
 		public Node getRoot() {
-			return mRoot;
+			return this.mRoot;
 		}
 		public BinaryTree(Node root = null) {
 			this.mRoot = root;
@@ -58,8 +58,9 @@ namespace BT {
 				return null;
 			}
 			else {
-				if (self.mLeft == find || self.mRight == find)
+				if (self.mLeft == find || self.mRight == find) {
 					return self;
+				}
 				else {
 					if (self.m_getData() < find.m_getData()) {
 						return this.m_getParent(ref self.mRight, ref find);
@@ -105,46 +106,43 @@ namespace BT {
 		}
 		
 
-		private String m_inOrderTraversal(ref Node parent) {
-			String key = "";
+		private String m_inOrderTraversal(ref Node parent, ref String key) {
 			if (parent == null) {
 				return key;
 			}
 			if (parent.mLeft != null) {
-				_ = this.m_inOrderTraversal(ref parent.mLeft);
+				_ = this.m_inOrderTraversal(ref parent.mLeft, ref key);
 			}
 
 			key += " " + parent.m_getData();
 			if (parent.mRight != null) {
-				_ = this.m_inOrderTraversal(ref parent.mRight);
+				_ = this.m_inOrderTraversal(ref parent.mRight, ref key);
 			}
 
 			return key;
 		}
-		private String m_preOrderTraversal(ref Node parent) {
-			String key = "";
+		private String m_preOrderTraversal(ref Node parent, ref String key) {
 			if (parent == null) {
 				return key;
 			}
 			key += " " + parent.m_getData();
 			if (parent.mLeft != null) {
-				_ = this.m_preOrderTraversal(ref parent.mLeft);
+				_ = this.m_preOrderTraversal(ref parent.mLeft, ref key);
 			}
 			if (parent.mRight != null) {
-				_ = this.m_preOrderTraversal(ref parent.mRight);
+				_ = this.m_preOrderTraversal(ref parent.mRight, ref key);
 			}
 			return key;
 		}
-		private String m_postOrderTraversal(ref Node parent) {
-			String key = "";
+		private String m_postOrderTraversal(ref Node parent, ref String key) {
 			if (parent == null) {
 				return key;
 			}
 			if (parent.mLeft != null) {
-				_ = this.m_postOrderTraversal(ref parent.mLeft);
+				_ = this.m_postOrderTraversal(ref parent.mLeft,ref key);
 			}
 			if (parent.mRight != null) {
-				_ = this.m_postOrderTraversal(ref parent.mRight);
+				_ = this.m_postOrderTraversal(ref parent.mRight, ref key);
 			}
 			key += " " + parent.m_getData();
 			return key;
@@ -162,13 +160,16 @@ namespace BT {
 			return this.m_getParent(ref this.mRoot, ref data);
 		}
 		public String InOrderTraversal() {
-			return this.m_inOrderTraversal(ref this.mRoot);
+			String key = "";
+			return this.m_inOrderTraversal(ref this.mRoot, ref key);
 		}
 		public String PreOrderTraversal() {
-			return this.m_preOrderTraversal(ref this.mRoot);
+			String key = "";
+			return this.m_preOrderTraversal(ref this.mRoot, ref key);
 		}
 		public String PostOrderTraversal() {
-			return this.m_postOrderTraversal(ref this.mRoot);
+			String key = "";
+			return this.m_postOrderTraversal(ref this.mRoot, ref key);
 		}
 		public Node getMinimum() {
 			return this.m_getMinimum(ref this.mRoot);
