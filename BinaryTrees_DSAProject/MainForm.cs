@@ -25,7 +25,7 @@ namespace BT {
 			this.Controls.Add(
 				new System.Windows.Forms.Label {
 					AutoSize = true,
-					Anchor = (AnchorStyles.Top | AnchorStyles.Bottom),
+					Anchor = AnchorStyles.Top | AnchorStyles.Bottom,
 					ForeColor = Color.Black,
 					Location = new System.Drawing.Point((Int32)(width / 2), height),
 					Name = "Blob" + (width / 2).ToString(),
@@ -48,11 +48,10 @@ namespace BT {
 		}
 		private void drawBlobs() {
 			this.removeOldControls();
-			Single level = 1;
-			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, ref level);
+			Single level = 1.2F;
+			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level);
 		}
-		private void m_drawBoxesHelper(Node current, Single width, Int32 height, ref Single level) {
-			//level -= (Single) 0.01;
+		private void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level) {
 			if (current != null) {
 				this.makeBlob(current, width, height);
 			}
@@ -60,11 +59,11 @@ namespace BT {
 				return;
 			}
 			if (current.mLeft != null) {
-				this.m_drawBoxesHelper(current.mLeft, (width - 100) * level, height + 100, ref level);
+				this.m_drawBoxesHelper(current.mLeft, (width - 50) - (((width - 50) * level) - (width - 50)), height + 75, level - (level > 1.0F ? (Single) 0.05 : 0));
 			}
 
 			if (current.mRight != null) {
-				this.m_drawBoxesHelper(current.mRight, (width + 100) * level, height + 100, ref level);
+				this.m_drawBoxesHelper(current.mRight, (width + 50) + (((width - 50) * level) - (width - 50)), height + 75, level - (level > 1.0F ? (Single) 0.05 : 0));
 			}
 		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
