@@ -18,7 +18,7 @@ namespace BT {
 		private void MainForm_Load(Object sender, EventArgs e) {
 
 		}
-		private void makeBlob(Node self, Int32 width, Int32 height) {
+		private void makeBlob(Node self, Single width, Int32 height) {
 			if (self == null) { 
 				return;
 			}
@@ -27,7 +27,7 @@ namespace BT {
 					AutoSize = true,
 					Anchor = (AnchorStyles.Top | AnchorStyles.Bottom),
 					ForeColor = Color.White,
-					Location = new System.Drawing.Point(width / 2, height),
+					Location = new System.Drawing.Point((Int32)(width / 2), height),
 					Name = "Blob" + (width / 2).ToString(),
 					Size = new System.Drawing.Size(35, 13),
 					TabIndex = 8,
@@ -48,9 +48,11 @@ namespace BT {
 		}
 		private void drawBlobs() {
 			this.removeOldControls();
-			this.m_drawBoxesHelper(this.Tree.getRoot(), this.Width, 100);
+			Single level = 1;
+			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, ref level);
 		}
-		private void m_drawBoxesHelper(Node current, Int32 width, Int32 height) {
+		private void m_drawBoxesHelper(Node current, Single width, Int32 height, ref Single level) {
+			//level -= (Single) 0.01;
 			if (current != null) {
 				this.makeBlob(current, width, height);
 			}
@@ -58,11 +60,11 @@ namespace BT {
 				return;
 			}
 			if (current.mLeft != null) {
-				this.m_drawBoxesHelper(current.mLeft, width - 100, height + 100);
+				this.m_drawBoxesHelper(current.mLeft, (width - 100) * level, height + 100, ref level);
 			}
 
 			if (current.mRight != null) {
-				this.m_drawBoxesHelper(current.mRight, width + 100, height + 100);
+				this.m_drawBoxesHelper(current.mRight, (width + 100) * level, height + 100, ref level);
 			}
 		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
