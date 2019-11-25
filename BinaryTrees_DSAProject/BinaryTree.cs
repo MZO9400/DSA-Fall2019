@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BT {
 	class BinaryTree {
@@ -26,6 +27,11 @@ namespace BT {
 				return;
 			}
 		}
+
+		internal List<Int32> getValues(String v) {
+			throw new NotImplementedException();
+		}
+
 		private Node m_findNode(ref Int32 data, ref Node parent) {
 			if (parent != null) {
 				if (parent.m_getData() > data) {
@@ -99,52 +105,54 @@ namespace BT {
 		}
 		
 
-		private String m_inOrderTraversal(ref Node parent, ref String key) {
+		private String m_inOrderTraversal(ref Node parent) {
+			String key = "";
 			if (parent == null) {
 				return key;
 			}
 			if (parent.mLeft != null) {
-				_ = this.m_inOrderTraversal(ref parent.mLeft, ref key);
+				_ = this.m_inOrderTraversal(ref parent.mLeft);
 			}
 
 			key += " " + parent.m_getData();
 			if (parent.mRight != null) {
-				_ = this.m_inOrderTraversal(ref parent.mRight, ref key);
+				_ = this.m_inOrderTraversal(ref parent.mRight);
 			}
 
 			return key;
 		}
-		private String m_preOrderTraversal(ref Node parent, ref String key) {
+		private String m_preOrderTraversal(ref Node parent) {
+			String key = "";
 			if (parent == null) {
 				return key;
 			}
 			key += " " + parent.m_getData();
 			if (parent.mLeft != null) {
-				_ = this.m_preOrderTraversal(ref parent.mLeft, ref key);
+				_ = this.m_preOrderTraversal(ref parent.mLeft);
 			}
 			if (parent.mRight != null) {
-				_ = this.m_preOrderTraversal(ref parent.mRight, ref key);
+				_ = this.m_preOrderTraversal(ref parent.mRight);
 			}
 			return key;
 		}
-		private String m_postOrderTraversal(ref Node parent, ref String key) {
+		private String m_postOrderTraversal(ref Node parent) {
+			String key = "";
 			if (parent == null) {
 				return key;
 			}
 			if (parent.mLeft != null) {
-				_ = this.m_postOrderTraversal(ref parent.mLeft, ref key);
+				_ = this.m_postOrderTraversal(ref parent.mLeft);
 			}
 			if (parent.mRight != null) {
-				_ = this.m_postOrderTraversal(ref parent.mRight, ref key);
+				_ = this.m_postOrderTraversal(ref parent.mRight);
 			}
 			key += " " + parent.m_getData();
 			return key;
 		}
 
-		public System.Collections.Generic.List<Int32> getValues(Func<Node, String, String> traverse) {
-			String trav = "";
-			System.Collections.Generic.List<String> tempList = new System.Collections.Generic.List<String> (traverse(mRoot, trav).Split(' '));
-			System.Collections.Generic.List<Int32> finalList = new System.Collections.Generic.List<Int32>;
+		public List<Int32> getValues(Func<Node, String> traverse) {
+			List<String> tempList = new List<String> (traverse(this.mRoot).Split(' '));
+			List<Int32> finalList = new List<Int32>();
 			foreach (String i in tempList) {
 				finalList.Add(Int32.Parse(i));
 			}
@@ -154,16 +162,13 @@ namespace BT {
 			return this.m_getParent(ref this.mRoot, ref data);
 		}
 		public String InOrderTraversal() {
-			String value = "";
-			return this.m_inOrderTraversal(ref this.mRoot, ref value);
+			return this.m_inOrderTraversal(ref this.mRoot);
 		}
 		public String PreOrderTraversal() {
-			String value = "";
-			return this.m_preOrderTraversal(ref this.mRoot, ref value);
+			return this.m_preOrderTraversal(ref this.mRoot);
 		}
 		public String PostOrderTraversal() {
-			String value = "";
-			return this.m_postOrderTraversal(ref this.mRoot, ref value);
+			return this.m_postOrderTraversal(ref this.mRoot);
 		}
 		public Node getMinimum() {
 			return this.m_getMinimum(ref this.mRoot);

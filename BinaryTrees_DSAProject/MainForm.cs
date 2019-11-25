@@ -19,6 +19,8 @@ namespace BT {
 
 		}
 		private void drawBoxes() {
+			List<Int32> traversal = this.Tree.getValues(this.Tree.InOrderTraversal());
+			
 		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
 
