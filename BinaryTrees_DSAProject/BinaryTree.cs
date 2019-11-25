@@ -28,10 +28,6 @@ namespace BT {
 			}
 		}
 
-		internal List<Int32> getValues(String v) {
-			throw new NotImplementedException();
-		}
-
 		private Node m_findNode(ref Int32 data, ref Node parent) {
 			if (parent != null) {
 				if (parent.m_getData() > data) {
@@ -146,15 +142,6 @@ namespace BT {
 			}
 			key += " " + parent.m_getData();
 			return key;
-		}
-
-		public List<Int32> getValues(Func<Node, String> traverse) {
-			List<String> tempList = new List<String> (traverse(this.mRoot).Split(' '));
-			List<Int32> finalList = new List<Int32>();
-			foreach (String i in tempList) {
-				finalList.Add(Int32.Parse(i));
-			}
-			return finalList;
 		}
 		public Node getParent(ref Node data) {
 			return this.m_getParent(ref this.mRoot, ref data);

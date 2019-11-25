@@ -26,7 +26,7 @@ namespace BT {
 				new System.Windows.Forms.Label {
 					AutoSize = true,
 					Anchor = (AnchorStyles.Top | AnchorStyles.Bottom),
-					ForeColor = Color.White,
+					ForeColor = Color.Black,
 					Location = new System.Drawing.Point((Int32)(width / 2), height),
 					Name = "Blob" + (width / 2).ToString(),
 					Size = new System.Drawing.Size(35, 13),
@@ -90,10 +90,6 @@ namespace BT {
 			}
 		}
 
-		private void PreOrderText_TextChanged(Object sender, EventArgs e) {
-
-		}
-
 		private void DeletionButton_Click(Object sender, EventArgs e) {
 			if (this.textBox2.Text == "") {
 				return;
@@ -126,9 +122,6 @@ namespace BT {
 		}
 		private void postOrderButton_Click(Object sender, EventArgs e) {
 			_ = MessageBox.Show(this.Tree.PostOrderTraversal(), "POSTORDER");
-		}
-		private void DrawBlobs_Click(Object sender, EventArgs e) {
-			this.drawBlobs();
 		}
 
 	}
