@@ -49,7 +49,7 @@ namespace BT {
 		 * Before re-adding new controls and labels, remove all old labels which contain key "Blob"
 		 */
 		private void removeOldControls() {
-			for (Int32 i = 0; i < this.Controls.Count; i++) {
+			for (Int32 i = this.Controls.Count - 1; i != 0; i--) {
 				if (this.Controls[i] is Label) { // Match data-type
 					if (this.Controls[i].Name.Contains("Blob")) {
 						this.Controls[i].Dispose();
@@ -159,5 +159,10 @@ namespace BT {
 			_ = MessageBox.Show(this.Tree.PostOrderTraversal(), "POSTORDER");
 		}
 
+		private void RESET_Click(Object sender, EventArgs e) {
+			this.Tree = new BT.BinaryTree();
+			removeOldControls();
+			GC.Collect();
+		}
 	}
 }

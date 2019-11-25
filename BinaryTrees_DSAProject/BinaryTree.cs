@@ -98,7 +98,7 @@ namespace BT {
 		 */
 		public Node m_deleteNode(ref Int32 data, ref Node self) {
 			if (self == null) {
-				return null;
+				return self;
 			}
 			if (data < self.m_getData()) {
 				self.mLeft = this.m_deleteNode(ref data, ref self.mLeft);
