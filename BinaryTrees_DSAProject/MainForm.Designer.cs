@@ -25,7 +25,6 @@
 		private void InitializeComponent() {
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.button2 = new System.Windows.Forms.Button();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.button3 = new System.Windows.Forms.Button();
@@ -55,18 +54,6 @@
 			this.button1.Text = "Insert";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.InsertionButton_Click);
-			// 
-			// richTextBox1
-			// 
-			this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.richTextBox1.Location = new System.Drawing.Point(37, 12);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(1062, 323);
-			this.richTextBox1.TabIndex = 2;
-			this.richTextBox1.Text = "";
-			this.richTextBox1.TextChanged += new System.EventHandler(this.PreOrderText_TextChanged);
 			// 
 			// button2
 			// 
@@ -139,7 +126,6 @@
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.button2);
-			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox1);
 			this.MinimumSize = new System.Drawing.Size(500, 250);
@@ -156,7 +142,6 @@
 		private BT.BinaryTree Tree;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.Button button3;

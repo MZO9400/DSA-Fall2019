@@ -18,7 +18,8 @@ namespace BT {
 		private void MainForm_Load(Object sender, EventArgs e) {
 
 		}
-
+		private void drawBoxes() {
+		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
 
 		private void InsertionButton_Click(Object sender, EventArgs e) {
@@ -28,9 +29,9 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox1.Text);
 			this.Tree.insertNode(ref value);
 			this.textBox1.Text = "";
-			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
+			/*this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();
+									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();*/
 		}
 		
 		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
@@ -55,9 +56,9 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox2.Text);
 			this.Tree.deleteNode(ref value);
 			this.textBox2.Text = "";
-			this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
+			/*this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
 									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();
+									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();*/
 		}
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}

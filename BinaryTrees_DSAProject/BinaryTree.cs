@@ -6,6 +6,9 @@ namespace BT {
 		public Int32 getCount() {
 			return System.Text.RegularExpressions.Regex.Matches(this.InOrderTraversal(), @"((\w+(\s?)))").Count;
 		}
+		public Node getRoot() {
+			return mRoot;
+		}
 		public BinaryTree(Node root = null) {
 			this.mRoot = root;
 		}
@@ -138,6 +141,15 @@ namespace BT {
 			return key;
 		}
 
+		public System.Collections.Generic.List<Int32> getValues(Func<Node, String, String> traverse) {
+			String trav = "";
+			System.Collections.Generic.List<String> tempList = new System.Collections.Generic.List<String> (traverse(mRoot, trav).Split(' '));
+			System.Collections.Generic.List<Int32> finalList = new System.Collections.Generic.List<Int32>;
+			foreach (String i in tempList) {
+				finalList.Add(Int32.Parse(i));
+			}
+			return finalList;
+		}
 		public Node getParent(ref Node data) {
 			return this.m_getParent(ref this.mRoot, ref data);
 		}
