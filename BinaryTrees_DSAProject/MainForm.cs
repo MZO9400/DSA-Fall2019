@@ -74,9 +74,6 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox1.Text);
 			this.Tree.insertNode(ref value);
 			this.textBox1.Text = "";
-			/*this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
-									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();*/
 		}
 		
 		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
@@ -101,9 +98,6 @@ namespace BT {
 			Int32 value = Convert.ToInt32(this.textBox2.Text);
 			this.Tree.deleteNode(ref value);
 			this.textBox2.Text = "";
-			/*this.richTextBox1.Text = this.Tree.PreOrderTraversal() + "\n" +
-									 this.Tree.InOrderTraversal() + "\n" +
-									 this.Tree.PostOrderTraversal() + "\n\n" + this.Tree.getCount();*/
 		}
 
 		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}
