@@ -27,7 +27,7 @@ namespace BT {
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
 		private void makeBlob(Node self, Single width, Int32 height, ref Single level) {
-			if (self == null) { 
+			if (self == null) {
 				return;
 			}
 			this.Controls.Add(
@@ -35,7 +35,7 @@ namespace BT {
 					AutoSize = true,
 					Anchor = AnchorStyles.Top | AnchorStyles.Bottom,
 					ForeColor = Color.Black,
-					Location = new System.Drawing.Point((Int32)(width / 2), height),
+					Location = new System.Drawing.Point((Int32) (width / 2), height),
 					Name = "Blob" + (width / 2).ToString(), // Key "Blob" added here to keep track of labels
 					Size = new System.Drawing.Size(35, 13),
 					TabIndex = 8,
@@ -76,12 +76,12 @@ namespace BT {
 			if (current != null) {
 				Graphics line = this.CreateGraphics();
 				if (isLeft == true) {
-					line.DrawLine(Pens.Black, width / 2, height, 
+					line.DrawLine(Pens.Black, width / 2, height,
 						(width + 50 + (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
 						height - 75);
 				}
 				else {
-					line.DrawLine(Pens.Black, width / 2, height, 
+					line.DrawLine(Pens.Black, width / 2, height,
 						(width - 50 - (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
 						height - 75);
 				}
@@ -100,7 +100,7 @@ namespace BT {
 					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), false);
 			}
 		}
-		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
+		private void InsertValue_TextChanged(Object sender, EventArgs e) { }
 
 		/*
 		 * Upon clicking the insert button, set the text to null and convert the value into an integer and push into nodes
@@ -153,8 +153,8 @@ namespace BT {
 			this.drawBlobs();
 		}
 
-		private void DeletionValue_TextChanged(Object sender, EventArgs e) {}
-		
+		private void DeletionValue_TextChanged(Object sender, EventArgs e) { }
+
 		/*
 		 * Simple as before
 		 */
