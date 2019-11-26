@@ -156,7 +156,7 @@
 		 * Mainly an autogen class, gets overwritten until #endregion. Make a BinaryTree object from BT namespace
 		 * called Tree. This private member contains all the tree implementation
 		*/
-		private BT.BinaryTree Tree;
+		private protected BT.BinaryTree Tree;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;

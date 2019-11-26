@@ -26,7 +26,7 @@ namespace BT {
 		/*
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
-		private void makeBlob(Node self, Single width, Int32 height) {
+		private void makeBlob(Node self, Single width, Int32 height, ref Single level) {
 			if (self == null) { 
 				return;
 			}
@@ -65,26 +65,39 @@ namespace BT {
 		private void drawBlobs() {
 			this.removeOldControls();
 			Single level = 1.2F;
-			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level);
+			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level, false);
 		}
 		/*
 		 * Helper function that changes values for each node depending on its level. The differences between levels is 0.05F times width
 		 * Width differences is width +- 50 * level, whereas height difference is 75 on each level. Stop changing level if it reaches 1.0F
 		 * So the nodes do not retract beyond their valid positions
 		 */
-		private void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level) {
+		private void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
 			if (current != null) {
-				this.makeBlob(current, width, height);
+				Graphics line = this.CreateGraphics();
+				if (isLeft == true) {
+					line.DrawLine(Pens.Black, width / 2, height, 
+						(width + 50 + (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
+						height - 75);
+				}
+				else {
+					line.DrawLine(Pens.Black, width / 2, height, 
+						(width - 50 - (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
+						height - 75);
+				}
+				this.makeBlob(current, width, height, ref level);
 			}
 			else {
 				return;
 			}
 			if (current.mLeft != null) {
-				this.m_drawBoxesHelper(current.mLeft, width - 50 - (((width - 50) * level) - (width - 50)), height + 75, level - (level > 1.0F ? (Single) 0.05 : 0));
+				this.m_drawBoxesHelper(current.mLeft, width - 50 - (((width - 50) * level) - (width - 50)),
+					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), true);
 			}
 
 			if (current.mRight != null) {
-				this.m_drawBoxesHelper(current.mRight, width + 50 + (((width - 50) * level) - (width - 50)), height + 75, level - (level > 1.0F ? (Single) 0.05 : 0));
+				this.m_drawBoxesHelper(current.mRight, width + 50 + (((width - 50) * level) - (width - 50)),
+					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), false);
 			}
 		}
 		private void InsertValue_TextChanged(Object sender, EventArgs e) {}
@@ -95,6 +108,11 @@ namespace BT {
 		private void InsertionButton_Click(Object sender, EventArgs e) {
 			if (this.textBox1.Text == "") {
 				return;
+			}
+			for (int i = 1; i < this.textBox1.Text.Length; i++) {
+				if (this.textBox1.Text[i] == '-') {
+					this.textBox1.Text = this.textBox1.Text.Remove(i, 1);
+				}
 			}
 			Int32 value = Convert.ToInt32(this.textBox1.Text);
 			this.Tree.insertNode(ref value);
@@ -123,6 +141,11 @@ namespace BT {
 		private void DeletionButton_Click(Object sender, EventArgs e) {
 			if (this.textBox2.Text == "") {
 				return;
+			}
+			for (int i = 1; i < this.textBox2.Text.Length; i++) {
+				if (this.textBox2.Text[i] == '-') {
+					this.textBox2.Text = this.textBox2.Text.Remove(i, 1);
+				}
 			}
 			Int32 value = Convert.ToInt32(this.textBox2.Text);
 			this.Tree.deleteNode(ref value);
@@ -161,7 +184,9 @@ namespace BT {
 
 		private void RESET_Click(Object sender, EventArgs e) {
 			this.Tree = new BT.BinaryTree();
-			removeOldControls();
+			this.Invalidate();
+			this.Update();
+			this.removeOldControls();
 			GC.Collect();
 		}
 	}
