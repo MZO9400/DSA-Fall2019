@@ -74,6 +74,19 @@ namespace BT {
 		 */
 		private void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
 			if (current != null) {
+				Graphics line = this.CreateGraphics();
+				if (level != 1.2F) {
+					if (isLeft == true) {
+						line.DrawLine(Pens.Black, width / 2, height,
+							(width + 150 + (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
+							height - 75);
+					}
+					else {
+						line.DrawLine(Pens.Black, width / 2, height,
+							(width + 50 - (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
+							height - 75);
+					}
+				}
 				this.makeBlob(current, width, height, ref level);
 			}
 			else {
