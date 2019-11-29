@@ -49,6 +49,8 @@ namespace BT {
 		 * Before re-adding new controls and labels, remove all old labels which contain key "Blob"
 		 */
 		private void removeOldControls() {
+			this.Invalidate();
+			this.Update();
 			for (Int32 i = this.Controls.Count - 1; i != 0; i--) {
 				if (this.Controls[i] is Label) { // Match data-type
 					if (this.Controls[i].Name.Contains("Blob")) {
@@ -186,8 +188,6 @@ namespace BT {
 
 		private void RESET_Click(Object sender, EventArgs e) {
 			this.Tree = new BT.BinaryTree();
-			this.Invalidate();
-			this.Update();
 			this.removeOldControls();
 			GC.Collect();
 		}
