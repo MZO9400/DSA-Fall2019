@@ -31,6 +31,10 @@
 			this.button4 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
+			this.loadTree = new System.Windows.Forms.OpenFileDialog();
+			this.button7 = new System.Windows.Forms.Button();
+			this.button8 = new System.Windows.Forms.Button();
+			this.saveTree = new System.Windows.Forms.SaveFileDialog();
 			this.SuspendLayout();
 			// 
 			// textBox1
@@ -117,7 +121,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button6.Location = new System.Drawing.Point(280, 445);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(75, 23);
@@ -126,6 +130,43 @@
 			this.button6.UseVisualStyleBackColor = true;
 			this.button6.Click += new System.EventHandler(this.RESET_Click);
 			// 
+			// loadTree
+			// 
+			this.loadTree.DefaultExt = "TreeData";
+			this.loadTree.FileName = "loadTree";
+			this.loadTree.Filter = "Tree files (*.TreeData)|*.TreeData";
+			this.loadTree.InitialDirectory = ".\\";
+			this.loadTree.Title = "Browse files";
+			// 
+			// button7
+			// 
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button7.Location = new System.Drawing.Point(361, 445);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(75, 23);
+			this.button7.TabIndex = 9;
+			this.button7.Text = "Load from File";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.loadButton_Click);
+			// 
+			// button8
+			// 
+			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button8.Location = new System.Drawing.Point(442, 445);
+			this.button8.Name = "button8";
+			this.button8.Size = new System.Drawing.Size(75, 23);
+			this.button8.TabIndex = 10;
+			this.button8.Text = "Save to File";
+			this.button8.UseVisualStyleBackColor = true;
+			this.button8.Click += new System.EventHandler(this.saveButton_Click);
+			// 
+			// saveTree
+			// 
+			this.saveTree.CreatePrompt = true;
+			this.saveTree.DefaultExt = "TreeData";
+			this.saveTree.InitialDirectory = ".\\";
+			this.saveTree.Title = "Save File";
+			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
@@ -133,6 +174,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.ClientSize = new System.Drawing.Size(1136, 480);
+			this.Controls.Add(this.button8);
+			this.Controls.Add(this.button7);
 			this.Controls.Add(this.button6);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button4);
@@ -165,6 +208,10 @@
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.OpenFileDialog loadTree;
+		private System.Windows.Forms.Button button7;
+		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.SaveFileDialog saveTree;
 	}
 }
 

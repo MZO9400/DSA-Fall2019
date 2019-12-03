@@ -191,5 +191,28 @@ namespace BT {
 			this.removeOldControls();
 			GC.Collect();
 		}
+
+		private void loadButton_Click(Object sender, EventArgs e) {
+			if (DialogResult.OK == this.loadTree.ShowDialog()) {
+				String text = System.IO.File.ReadAllText(this.loadTree.FileName);
+				this.RESET_Click(this, new EventArgs());
+				String[] textArray = text.Split(' ');
+				foreach (String item in textArray) {
+					Int32 toInsert = 0;
+					if (!Int32.TryParse(item, out toInsert)) {
+						continue;
+					}
+					this.Tree.insertNode(ref toInsert);
+				}
+			}
+			drawBlobs();
+		}
+
+		private void saveButton_Click(Object sender, EventArgs e) {
+			if (DialogResult.OK == this.saveTree.ShowDialog()) {
+				System.IO.File.WriteAllText(this.saveTree.FileName, this.Tree.InOrderTraversal());
+			}
+		}
+
 	}
 }
