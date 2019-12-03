@@ -21,6 +21,9 @@ namespace BT {
 		/*
 		 * Simple ctor
 		 */
+		public BinaryTree(ref Int32 data) {
+			this.mRoot = new Node(ref data);
+		}
 		public BinaryTree(Node root = null) {
 			this.mRoot = root;
 		}
