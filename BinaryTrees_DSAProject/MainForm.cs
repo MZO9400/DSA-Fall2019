@@ -210,7 +210,7 @@ namespace BT {
 
 		private void saveButton_Click(Object sender, EventArgs e) {
 			if (DialogResult.OK == this.saveTree.ShowDialog()) {
-				System.IO.File.WriteAllText(this.saveTree.FileName, this.Tree.InOrderTraversal());
+				System.IO.File.WriteAllText(this.saveTree.FileName, this.Tree.LevelOrderTraversal());
 			}
 		}
 

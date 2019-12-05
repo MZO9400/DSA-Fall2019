@@ -178,6 +178,21 @@ namespace BT {
 			key += " " + parent.m_getData();
 			return key;
 		}
+		private String m_levelOrderTraversal(ref Node parent, ref string key) {
+			Queue<Node> queue = new Queue<Node>();
+			queue.Enqueue(parent);
+			while (queue.Count != 0) {
+				Node temporary = queue.Dequeue();
+				key += temporary.m_getData();
+				if (temporary.mLeft != null) {
+					queue.Enqueue(temporary.mLeft);
+				}
+				if (temporary.mRight != null) {
+					queue.Enqueue(temporary.mRight);
+				}
+			}
+			return key;
+		}
 
 
 		/*
@@ -198,6 +213,10 @@ namespace BT {
 		public String PostOrderTraversal() {
 			String key = "";
 			return this.m_postOrderTraversal(ref this.mRoot, ref key);
+		}
+		public String LevelOrderTraversal() {
+			String key = "";
+			return this.m_levelOrderTraversal(ref this.mRoot, ref key);
 		}
 		public Node getMinimum() {
 			return this.m_getMinimum(ref this.mRoot);
