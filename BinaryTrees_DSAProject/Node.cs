@@ -17,7 +17,7 @@ namespace BT {
 			this.mLeft = left;
 			this.mRight = right;
 		}
-		public void m_setData(Int32 data) {
+		public void m_setData(ref Int32 data) {
 			this.mData = data;
 		}
 		public Int32 m_getData() {

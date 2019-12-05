@@ -127,7 +127,7 @@ namespace BT {
 
 				else {
 					int tData = m_getMinimum(ref self.mRight).m_getData();
-					self.m_setData(tData);
+					self.m_setData(ref tData);
 					self.mRight = m_deleteNode(ref tData, ref self.mRight);
 				}
 			}
