@@ -164,6 +164,7 @@
 			// 
 			this.saveTree.CreatePrompt = true;
 			this.saveTree.DefaultExt = "TreeData";
+			this.saveTree.Filter = "Tree files (*.TreeData)|*.TreeData";
 			this.saveTree.InitialDirectory = ".\\";
 			this.saveTree.Title = "Save File";
 			// 
