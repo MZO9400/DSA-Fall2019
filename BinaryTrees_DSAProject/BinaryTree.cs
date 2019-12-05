@@ -178,17 +178,22 @@ namespace BT {
 			key += " " + parent.m_getData();
 			return key;
 		}
+
+		/*
+		 * Level order traversing for saving tree data in files. Trees are always built by level orders
+		 * So it only makes sense to rebuild a tree with level order traversed data when loading from file
+		 */
 		private String m_levelOrderTraversal(ref Node parent, ref string key) {
-			Queue<Node> queue = new Queue<Node>();
-			queue.Enqueue(parent);
+			Queue<Node> queue = new Queue<Node>(); // Make a simple queue
+			queue.Enqueue(parent); // Add all the current level nodes
 			while (queue.Count != 0) {
-				Node temporary = queue.Dequeue();
-				key += temporary.m_getData() + " ";
+				Node temporary = queue.Dequeue(); // Dequeue the current root node of the tree.
+				key += temporary.m_getData() + " "; // Put its data in the key string
 				if (temporary.mLeft != null) {
-					queue.Enqueue(temporary.mLeft);
+					queue.Enqueue(temporary.mLeft); // Add the level-- level nodes
 				}
 				if (temporary.mRight != null) {
-					queue.Enqueue(temporary.mRight);
+					queue.Enqueue(temporary.mRight); // Same as above
 				}
 			}
 			return key;
