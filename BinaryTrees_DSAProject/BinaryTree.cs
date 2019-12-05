@@ -183,7 +183,7 @@ namespace BT {
 			queue.Enqueue(parent);
 			while (queue.Count != 0) {
 				Node temporary = queue.Dequeue();
-				key += temporary.m_getData();
+				key += temporary.m_getData() + " ";
 				if (temporary.mLeft != null) {
 					queue.Enqueue(temporary.mLeft);
 				}
