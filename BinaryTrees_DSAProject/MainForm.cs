@@ -113,7 +113,7 @@ namespace BT {
 			if (this.textBox1.Text == "") {
 				return;
 			}
-			for (int i = 1; i < this.textBox1.Text.Length; i++) {
+			for (Int32 i = 1; i < this.textBox1.Text.Length; i++) {
 				if (this.textBox1.Text[i] == '-') {
 					this.textBox1.Text = this.textBox1.Text.Remove(i, 1);
 				}
@@ -146,7 +146,7 @@ namespace BT {
 			if (this.textBox2.Text == "") {
 				return;
 			}
-			for (int i = 1; i < this.textBox2.Text.Length; i++) {
+			for (Int32 i = 1; i < this.textBox2.Text.Length; i++) {
 				if (this.textBox2.Text[i] == '-') {
 					this.textBox2.Text = this.textBox2.Text.Remove(i, 1);
 				}
@@ -205,7 +205,7 @@ namespace BT {
 					this.Tree.insertNode(ref toInsert);
 				}
 			}
-			drawBlobs();
+			this.drawBlobs();
 		}
 
 		private void saveButton_Click(Object sender, EventArgs e) {

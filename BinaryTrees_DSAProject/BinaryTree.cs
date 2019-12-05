@@ -126,9 +126,9 @@ namespace BT {
 				}
 
 				else {
-					int tData = m_getMinimum(ref self.mRight).m_getData();
+					Int32 tData = this.m_getMinimum(ref self.mRight).m_getData();
 					self.m_setData(ref tData);
-					self.mRight = m_deleteNode(ref tData, ref self.mRight);
+					self.mRight = this.m_deleteNode(ref tData, ref self.mRight);
 				}
 			}
 			return self;
@@ -183,7 +183,7 @@ namespace BT {
 		 * Level order traversing for saving tree data in files. Trees are always built by level orders
 		 * So it only makes sense to rebuild a tree with level order traversed data when loading from file
 		 */
-		private String m_levelOrderTraversal(ref Node parent, ref string key) {
+		private String m_levelOrderTraversal(ref Node parent, ref String key) {
 			Queue<Node> queue = new Queue<Node>(); // Make a simple queue
 			queue.Enqueue(parent); // Add all the current level nodes
 			while (queue.Count != 0) {
