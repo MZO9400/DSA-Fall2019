@@ -9,7 +9,7 @@ namespace BT {
 		 * Count number of data elements
 		 */
 		public Int32 getCount() {
-			return System.Text.RegularExpressions.Regex.Matches(this.InOrderTraversal(), @"((\w+(\s?)))").Count;
+			return this.LevelOrderTraversal().Split(' ').Length;
 		}
 		/*
 		 * Getter, setter is not needed.
