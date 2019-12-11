@@ -20,13 +20,13 @@ namespace BST {
 			this.InitializeComponent();
 		}
 
-		private void MainForm_Load(Object sender, EventArgs e) {
+		private void mainForm_Load(Object sender, EventArgs e) {
 
 		}
 		/*
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
-		private void makeBlob(Node self, Single width, Int32 height, ref Single level) {
+		private void makeBlob(Node self, Single width, Int32 height) {
 			if (self == null) {
 				return;
 			}
@@ -89,7 +89,7 @@ namespace BST {
 							height - 75);
 					}
 				}
-				this.makeBlob(current, width, height, ref level);
+				this.makeBlob(current, width, height);
 			}
 			else {
 				return;
@@ -104,12 +104,12 @@ namespace BST {
 					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), false);
 			}
 		}
-		private void InsertValue_TextChanged(Object sender, EventArgs e) { }
+		private void insertValue_TextChanged(Object sender, EventArgs e) { }
 
 		/*
 		 * Upon clicking the insert button, set the text to null and convert the value into an integer and push into nodes
 		 */
-		private void InsertionButton_Click(Object sender, EventArgs e) {
+		private void insertionButton_Click(Object sender, EventArgs e) {
 			if (this.textBox1.Text == "") {
 				return;
 			}
@@ -126,7 +126,7 @@ namespace BST {
 		/*
 		 * Allow only numbers, backspace, enter, and some other special characters
 		 */
-		private void InsertValue_KeyPress(Object sender, KeyPressEventArgs e) {
+		private void insertValue_KeyPress(Object sender, KeyPressEventArgs e) {
 			Char insert = e.KeyChar;
 			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46 && insert != '-') {
 				e.Handled = true;
@@ -135,14 +135,14 @@ namespace BST {
 			 * Enter (13) adds the current value into Tree
 			 */
 			if (insert == 13) {
-				this.InsertionButton_Click(this, new EventArgs());
+				this.insertionButton_Click(this, new EventArgs());
 				e.Handled = true;
 			}
 		}
 		/*
 		 * Same happens with delete button. Value is converted from String to Int32 and removed from Tree
 		 */
-		private void DeletionButton_Click(Object sender, EventArgs e) {
+		private void deletionButton_Click(Object sender, EventArgs e) {
 			if (this.textBox2.Text == "") {
 				return;
 			}
@@ -157,18 +157,18 @@ namespace BST {
 			this.drawBlobs();
 		}
 
-		private void DeletionValue_TextChanged(Object sender, EventArgs e) { }
+		private void deletionValue_TextChanged(Object sender, EventArgs e) { }
 
 		/*
 		 * Simple as before
 		 */
-		private void DeletionValue_KeyPress(Object sender, KeyPressEventArgs e) {
+		private void deletionValue_KeyPress(Object sender, KeyPressEventArgs e) {
 			Char insert = e.KeyChar;
 			if (!(insert >= '0' && insert <= '9') && insert != 8 && insert != 46 && insert != '-') {
 				e.Handled = true;
 			}
 			if (insert == 13) {
-				this.DeletionButton_Click(this, new EventArgs());
+				this.deletionButton_Click(this, new EventArgs());
 				e.Handled = true;
 			}
 
@@ -177,16 +177,16 @@ namespace BST {
 		 * Buttons which show popups printing certain orders of tree traversal
 		 */
 		private void preOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(this.Tree.PreOrderTraversal(), "PREORDER");
+			_ = MessageBox.Show(this.Tree.preOrderTraversal(), "PREORDER");
 		}
 		private void inOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(this.Tree.InOrderTraversal(), "INORDER");
+			_ = MessageBox.Show(this.Tree.inOrderTraversal(), "INORDER");
 		}
 		private void postOrderButton_Click(Object sender, EventArgs e) {
-			_ = MessageBox.Show(this.Tree.PostOrderTraversal(), "POSTORDER");
+			_ = MessageBox.Show(this.Tree.postOrderTraversal(), "POSTORDER");
 		}
 
-		private void RESET_Click(Object sender, EventArgs e) {
+		private void reset_Click(Object sender, EventArgs e) {
 			this.Tree = new BST.BinarySearchTree();
 			this.removeOldControls();
 			GC.Collect();
@@ -195,11 +195,10 @@ namespace BST {
 		private void loadButton_Click(Object sender, EventArgs e) {
 			if (DialogResult.OK == this.loadTree.ShowDialog()) {
 				String text = System.IO.File.ReadAllText(this.loadTree.FileName);
-				this.RESET_Click(this, new EventArgs());
+				this.reset_Click(this, new EventArgs());
 				String[] textArray = text.Split(' ');
 				foreach (String item in textArray) {
-					Int32 toInsert = 0;
-					if (!Int32.TryParse(item, out toInsert)) {
+					if (!Int32.TryParse(item, out Int32 toInsert)) {
 						continue;
 					}
 					this.Tree.insertNode(ref toInsert);
@@ -210,7 +209,7 @@ namespace BST {
 
 		private void saveButton_Click(Object sender, EventArgs e) {
 			if (DialogResult.OK == this.saveTree.ShowDialog()) {
-				System.IO.File.WriteAllText(this.saveTree.FileName, this.Tree.LevelOrderTraversal());
+				System.IO.File.WriteAllText(this.saveTree.FileName, this.Tree.levelOrderTraversal());
 			}
 		}
 

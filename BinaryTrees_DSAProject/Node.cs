@@ -8,7 +8,7 @@ using System.Threading.Tasks;
  * Simple Node class taking has 32-bit integer and pointer to children
  */
 namespace BST {
-	class Node {
+	internal class Node {
 		public Node mLeft;
 		public Node mRight;
 		private Int32 mData;

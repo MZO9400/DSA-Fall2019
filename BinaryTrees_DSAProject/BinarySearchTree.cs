@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 
 namespace BST {
-	class BinarySearchTree {
+	internal class BinarySearchTree {
 		private Node mRoot;
 
 		/*
 		 * Count number of data elements
 		 */
 		public Int32 getCount() {
-			return this.LevelOrderTraversal().Split(' ').Length;
+			return this.levelOrderTraversal().Split(' ').Length;
 		}
 		/*
 		 * Getter, setter is not needed.
@@ -207,19 +207,19 @@ namespace BST {
 		public Node getParent(ref Node data) {
 			return this.m_getParent(ref this.mRoot, ref data);
 		}
-		public String InOrderTraversal() {
+		public String inOrderTraversal() {
 			String key = "";
 			return this.m_inOrderTraversal(ref this.mRoot, ref key);
 		}
-		public String PreOrderTraversal() {
+		public String preOrderTraversal() {
 			String key = "";
 			return this.m_preOrderTraversal(ref this.mRoot, ref key);
 		}
-		public String PostOrderTraversal() {
+		public String postOrderTraversal() {
 			String key = "";
 			return this.m_postOrderTraversal(ref this.mRoot, ref key);
 		}
-		public String LevelOrderTraversal() {
+		public String levelOrderTraversal() {
 			String key = "";
 			return this.m_levelOrderTraversal(ref this.mRoot, ref key);
 		}
