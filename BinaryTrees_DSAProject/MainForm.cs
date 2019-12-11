@@ -26,9 +26,9 @@ namespace BST {
 		/*
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
-		private void makeBlob(Node self, Single width, Int32 height) {
+		private async Task<Int32> makeBlob(Node self, Single width, Int32 height) {
 			if (self == null) {
-				return;
+				return await Task.FromResult(1);
 			}
 			this.Controls.Add(
 				new System.Windows.Forms.Label {
@@ -44,6 +44,7 @@ namespace BST {
 					Padding = new Padding(8)
 				}
 			);
+			return await Task.FromResult(0);
 		}
 		/*
 		 * Before re-adding new controls and labels, remove all old labels which contain key "Blob"
@@ -74,7 +75,7 @@ namespace BST {
 		 * Width differences is width +- 50 * level, whereas height difference is 75 on each level. Stop changing level if it reaches 1.0F
 		 * So the nodes do not retract beyond their valid positions
 		 */
-		private void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
+		private async void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
 			if (current != null) {
 				Graphics line = this.CreateGraphics();
 				if (level != 1.2F) {
@@ -89,7 +90,7 @@ namespace BST {
 							height - 75);
 					}
 				}
-				this.makeBlob(current, width, height);
+				_ = await this.makeBlob(current, width, height);
 			}
 			else {
 				return;
