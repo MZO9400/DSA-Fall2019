@@ -12,11 +12,11 @@ using System.Windows.Forms;
 /*
  * Self written Form class, this is the front-end GUI and handling functions
  */
-namespace BT {
+namespace BST {
 	public partial class MainForm : Form {
 		public MainForm() {
 			// Initialize my tree here
-			this.Tree = new BinaryTree();
+			this.Tree = new BinarySearchTree();
 			this.InitializeComponent();
 		}
 
@@ -187,7 +187,7 @@ namespace BT {
 		}
 
 		private void RESET_Click(Object sender, EventArgs e) {
-			this.Tree = new BT.BinaryTree();
+			this.Tree = new BST.BinarySearchTree();
 			this.removeOldControls();
 			GC.Collect();
 		}

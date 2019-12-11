@@ -1,4 +1,4 @@
-﻿namespace BT {
+﻿namespace BST {
 	partial class MainForm {
 		/// <summary>
 		/// Required designer variable.
@@ -39,7 +39,7 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(1034, 419);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(65, 20);
@@ -50,7 +50,7 @@
 			// 
 			// button1
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button1.Location = new System.Drawing.Point(1034, 445);
 			this.button1.Name = "button1";
@@ -62,7 +62,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button2.Location = new System.Drawing.Point(963, 445);
 			this.button2.Name = "button2";
@@ -74,7 +74,7 @@
 			// 
 			// textBox2
 			// 
-			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox2.Location = new System.Drawing.Point(963, 419);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(64, 20);
@@ -85,7 +85,7 @@
 			// 
 			// button3
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button3.Location = new System.Drawing.Point(37, 445);
 			this.button3.Name = "button3";
@@ -97,7 +97,7 @@
 			// 
 			// button4
 			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button4.Location = new System.Drawing.Point(118, 445);
 			this.button4.Name = "button4";
@@ -109,7 +109,7 @@
 			// 
 			// button5
 			// 
-			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.button5.Location = new System.Drawing.Point(199, 445);
 			this.button5.Name = "button5";
@@ -121,7 +121,7 @@
 			// 
 			// button6
 			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button6.Location = new System.Drawing.Point(280, 445);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(75, 23);
@@ -140,7 +140,7 @@
 			// 
 			// button7
 			// 
-			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button7.Location = new System.Drawing.Point(361, 445);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(75, 23);
@@ -151,7 +151,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.button8.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.button8.Location = new System.Drawing.Point(442, 445);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(75, 23);
@@ -187,7 +187,7 @@
 			this.Controls.Add(this.textBox1);
 			this.MinimumSize = new System.Drawing.Size(500, 250);
 			this.Name = "MainForm";
-			this.Text = "Binary Tree";
+			this.Text = "Binary Search Tree";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
@@ -197,10 +197,10 @@
 
 		#endregion
 		/*
-		 * Mainly an autogen class, gets overwritten until #endregion. Make a BinaryTree object from BT namespace
+		 * Mainly an autogen class, gets overwritten until #endregion. Make a BinarySearchTree object from BST namespace
 		 * called Tree. This private member contains all the tree implementation
 		*/
-		private protected BT.BinaryTree Tree;
+		private protected BST.BinarySearchTree Tree;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;

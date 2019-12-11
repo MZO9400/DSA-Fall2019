@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BT {
-	class BinaryTree {
+namespace BST {
+	class BinarySearchTree {
 		private Node mRoot;
 
 		/*
@@ -21,10 +21,10 @@ namespace BT {
 		/*
 		 * Simple ctor
 		 */
-		public BinaryTree(ref Int32 data) {
+		public BinarySearchTree(ref Int32 data) {
 			this.mRoot = new Node(ref data);
 		}
-		public BinaryTree(Node root = null) {
+		public BinarySearchTree(Node root = null) {
 			this.mRoot = root;
 		}
 

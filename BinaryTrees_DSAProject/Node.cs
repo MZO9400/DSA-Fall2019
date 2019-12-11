@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 /*
  * Simple Node class taking has 32-bit integer and pointer to children
  */
-namespace BT {
+namespace BST {
 	class Node {
 		public Node mLeft;
 		public Node mRight;

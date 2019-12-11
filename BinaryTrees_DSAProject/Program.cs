@@ -8,7 +8,7 @@ using System.Windows.Forms;
 /*
  * Main() function, automatic generation in Visual C#	 
 */
-namespace BT {
+namespace BST {
 	static class Program {
 		/// <summary>
 		/// The main entry point for the application.
