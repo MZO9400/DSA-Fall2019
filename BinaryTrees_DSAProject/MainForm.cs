@@ -198,8 +198,7 @@ namespace BST {
 				this.RESET_Click(this, new EventArgs());
 				String[] textArray = text.Split(' ');
 				foreach (String item in textArray) {
-					Int32 toInsert = 0;
-					if (!Int32.TryParse(item, out toInsert)) {
+					if (!Int32.TryParse(item, out Int32 toInsert)) {
 						continue;
 					}
 					this.Tree.insertNode(ref toInsert);
