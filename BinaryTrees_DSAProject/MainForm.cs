@@ -26,7 +26,7 @@ namespace BST {
 		/*
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
-		private async Task<Int32> makeBlob(Node self, Single width, Int32 height, Boolean isLeft) {
+		private async Task<Int32> makeBlob(Node self, Single width, Int32 height, Boolean isLeft, Boolean isRoot) {
 			if (self == null) {
 				return await Task.FromResult(1);
 			}
@@ -34,8 +34,8 @@ namespace BST {
 				new System.Windows.Forms.Label {
 					AutoSize = true,
 					Anchor = AnchorStyles.Top | AnchorStyles.Bottom,
-					BackColor = ((isLeft) ? Color.LightGreen : Color.LightBlue), 
-					ForeColor = Color.Black,
+					BackColor = isRoot ? Color.Black : ((isLeft) ? Color.LightGreen : Color.LightBlue),
+					ForeColor = isRoot ? Color.White : Color.Black,
 					Location = new System.Drawing.Point((Int32) (width), height),
 					Name = "Blob" + (width / 2).ToString(), // Key "Blob" added here to keep track of labels
 					Size = new System.Drawing.Size(35, 13),
@@ -69,7 +69,7 @@ namespace BST {
 		private async void drawBlobs() {
 			this.removeOldControls();
 			Single level = 1.2F;
-			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level, false);
+			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level, false, true);
 			_ = await this.m_drawLines(this.Tree.getRoot());
 		}
 
@@ -81,11 +81,11 @@ namespace BST {
 				return await Task.FromResult(1);
 			}
 			if (self.mLeft != null) {
-				this.CreateGraphics().DrawLine(Pens.Black, self.mLocation.X, self.mLocation.Y, self.mLeft.mLocation.X, self.mLeft.mLocation.Y);
+				this.CreateGraphics().DrawLine(Pens.LightBlue, self.mLocation.X, self.mLocation.Y, self.mLeft.mLocation.X, self.mLeft.mLocation.Y);
 				_ = m_drawLines(self.mLeft);
 			}
 			if (self.mRight != null) {
-				this.CreateGraphics().DrawLine(Pens.Black, self.mLocation.X, self.mLocation.Y, self.mRight.mLocation.X, self.mRight.mLocation.Y);
+				this.CreateGraphics().DrawLine(Pens.LightGreen, self.mLocation.X, self.mLocation.Y, self.mRight.mLocation.X, self.mRight.mLocation.Y);
 				_ = m_drawLines(self.mRight);
 			}
 			return await Task.FromResult(0);
@@ -95,22 +95,22 @@ namespace BST {
 		 * Width differences is width +- 50 * level, whereas height difference is 75 on each level. Stop changing level if it reaches 1.0F
 		 * So the nodes do not retract beyond their valid positions
 		 */
-		private async void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
+		private async void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft, Boolean isRoot) {
 			if (current != null) {
 				current.mLocation = new System.Drawing.Point((Int32)width / 2, height);
-				_ = await this.makeBlob(current, width / 2, height, isLeft);
+				_ = await this.makeBlob(current, width / 2, height, isLeft, isRoot);
 			}
 			else {
 				return;
 			}
 			if (current.mLeft != null) {
 				this.m_drawBoxesHelper(current.mLeft, width - 50 - (((width - 50) * level) - (width - 50)),
-					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), true);
+					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), true, false);
 			}
 
 			if (current.mRight != null) {
 				this.m_drawBoxesHelper(current.mRight, width + 50 + (((width - 50) * level) - (width - 50)),
-					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), false);
+					height + 75, level - (level > 1.0F ? (Single) 0.05 : 0), false, false);
 			}
 		}
 		private void insertValue_TextChanged(Object sender, EventArgs e) { }
