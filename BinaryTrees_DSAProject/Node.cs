@@ -11,6 +11,7 @@ namespace BST {
 	internal class Node {
 		public Node mLeft;
 		public Node mRight;
+		public System.Drawing.Point mLocation; 
 		private Int32 mData;
 		public Node(ref Int32 data, Node left = null, Node right = null) {
 			this.mData = data;

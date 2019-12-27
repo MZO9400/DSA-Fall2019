@@ -36,7 +36,7 @@ namespace BST {
 					Anchor = AnchorStyles.Top | AnchorStyles.Bottom,
 					BackColor = ((isLeft) ? Color.LightGreen : Color.LightBlue), 
 					ForeColor = Color.Black,
-					Location = new System.Drawing.Point((Int32) (width / 2), height),
+					Location = new System.Drawing.Point((Int32) (width), height),
 					Name = "Blob" + (width / 2).ToString(), // Key "Blob" added here to keep track of labels
 					Size = new System.Drawing.Size(35, 13),
 					TabIndex = 8,
@@ -66,10 +66,29 @@ namespace BST {
 		 * Height starts from 100, an Int32. Whereas width starts from maximum value of width (max X axis), drawing
 		 * starts from Tree->mRoot. Level is used as a multiplier to prevent overlapping of complex nodes
 		 */
-		private void drawBlobs() {
+		private async void drawBlobs() {
 			this.removeOldControls();
 			Single level = 1.2F;
 			this.m_drawBoxesHelper(this.Tree.getRoot(), (Single) this.Width, 100, level, false);
+			_ = await this.m_drawLines(this.Tree.getRoot());
+		}
+
+		/*
+		 * Draw lines from one point to another using in-order traversal.
+		 */
+		 private async Task<Int32> m_drawLines(Node self) {
+			if (self == null) {
+				return await Task.FromResult(1);
+			}
+			if (self.mLeft != null) {
+				this.CreateGraphics().DrawLine(Pens.Black, self.mLocation.X, self.mLocation.Y, self.mLeft.mLocation.X, self.mLeft.mLocation.Y);
+				_ = m_drawLines(self.mLeft);
+			}
+			if (self.mRight != null) {
+				this.CreateGraphics().DrawLine(Pens.Black, self.mLocation.X, self.mLocation.Y, self.mRight.mLocation.X, self.mRight.mLocation.Y);
+				_ = m_drawLines(self.mRight);
+			}
+			return await Task.FromResult(0);
 		}
 		/*
 		 * Helper function that changes values for each node depending on its level. The differences between levels is 0.05F times width
@@ -78,20 +97,8 @@ namespace BST {
 		 */
 		private async void m_drawBoxesHelper(Node current, Single width, Int32 height, Single level, Boolean isLeft) {
 			if (current != null) {
-				Graphics line = this.CreateGraphics();
-				if (level != 1.2F) {
-					if (isLeft == true) {
-						line.DrawLine(Pens.Black, width / 2, height,
-							(width + 150 + (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
-							height - 75);
-					}
-					else {
-						line.DrawLine(Pens.Black, width / 2, height,
-							(width + 50 - (((width - 50) * (level + 0.05F)) - (width - 50))) / 2,
-							height - 75);
-					}
-				}
-				_ = await this.makeBlob(current, width, height, isLeft);
+				current.mLocation = new System.Drawing.Point((Int32)width / 2, height);
+				_ = await this.makeBlob(current, width / 2, height, isLeft);
 			}
 			else {
 				return;
