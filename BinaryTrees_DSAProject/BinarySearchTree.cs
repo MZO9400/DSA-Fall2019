@@ -23,7 +23,7 @@ namespace BST {
 		 */
 		public BinarySearchTree(ref Int32 data) {
 			this.mRoot = new Node(ref data);
-		}
+			}
 		public BinarySearchTree(Node root = null) {
 			this.mRoot = root;
 		}

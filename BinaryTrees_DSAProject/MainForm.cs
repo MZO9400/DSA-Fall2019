@@ -26,7 +26,7 @@ namespace BST {
 		/*
 		 * Build a blob from self->data at width (x), and height (y).
 		 */
-		private async Task<Int32> makeBlob(Node self, Single width, Int32 height) {
+		private async Task<Int32> makeBlob(Node self, Single width, Int32 height, Boolean isLeft) {
 			if (self == null) {
 				return await Task.FromResult(1);
 			}
@@ -34,6 +34,7 @@ namespace BST {
 				new System.Windows.Forms.Label {
 					AutoSize = true,
 					Anchor = AnchorStyles.Top | AnchorStyles.Bottom,
+					BackColor = ((isLeft) ? Color.LightGreen : Color.LightBlue), 
 					ForeColor = Color.Black,
 					Location = new System.Drawing.Point((Int32) (width / 2), height),
 					Name = "Blob" + (width / 2).ToString(), // Key "Blob" added here to keep track of labels
@@ -90,7 +91,7 @@ namespace BST {
 							height - 75);
 					}
 				}
-				_ = await this.makeBlob(current, width, height);
+				_ = await this.makeBlob(current, width, height, isLeft);
 			}
 			else {
 				return;
